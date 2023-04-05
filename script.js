@@ -32,13 +32,36 @@ function cronometro(){
     var minAtual = 0;
     var horaAtual = 0;
 
-    if(segAtual < 60){
+    if(segAtual <= 60){
         if(segAtual < 9){
             segAtual++;
-            seg.innerHTML = seg + segAtual;
+            seg.innerHTML = "0" + segAtual;
         }else{
             segAtual++;
             seg.innerHTML = segAtual;
+        }
+
+        if(segAtual === 60){
+            segAtual = 0;
+            seg.innerHTML = "00";
+            if(minAtual <= 60){
+                if(minAtual < 9){
+                    minAtual++;
+                    min.innerHTML = "0" + minAtual;
+                }else{
+                    minAtual++;
+                    min.innerHTML = minAtual;
+                }
+
+                if(minAtual === 60){
+                    minAtual = 0;
+                    min.innerHTML = "00";
+
+                    if(horaAtual < 9){
+                        hora.innerHTML = "0" + horaAtual;
+                    }
+                }
+            }
         }
     }
 }
