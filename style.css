@@ -21,6 +21,16 @@ body{
     width: 100vw;
 }
 
+.frame{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px #344e41 solid;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+}
+
 h1{
     font-size: 50px;
     color: #344e41;
@@ -28,7 +38,7 @@ h1{
 
 .cronometro{
     margin: 2vh;
-    font-size: 35px;
+    font-size: 45px;
 }
 
 button{
@@ -38,6 +48,7 @@ button{
     border: none;
     border-radius: 3px;
     padding: 3px;
+    margin-top: 3vh;
 }
 
 button:enabled{

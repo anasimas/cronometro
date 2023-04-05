@@ -7,19 +7,21 @@
     <title>Cronômetro</title>
 
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>Cronômetro</h1>
-        <div class="cronometro">
-            <span id="hora">00</span>:<span id="min">00</span>:<span id="seg">00</span>
+            <h1>Cronômetro</h1>
+        <div class="frame">
+            <div class="cronometro">
+                <span id="hora">00</span>:<span id="min">00</span>:<span id="seg">00</span>
+            </div>
         </div>
-        <div class="botoes">
-            <button id="play" onclick="play()">Iniciar</button>
-            <button id="pause" onclick="pause()" disabled>Pausar</button>
-            <button id="reset" onclick="reset()" disabled>Reset</button>
-        </div>
+            <div class="botoes">
+                <button id="play" onclick="play()">Iniciar</button>
+                <button id="pause" onclick="pause()" disabled>Pausar</button>
+                <button id="reset" onclick="reset()" disabled>Reset</button>
+            </div>
     </div>
 </body>
+<script src="script.js"></script>
 </html>
