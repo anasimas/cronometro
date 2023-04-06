@@ -12,7 +12,7 @@ body{
     font-family: 'Nunito', sans-serif;
 }
 
-.container{
+#container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,7 +21,42 @@ body{
     width: 100vw;
 }
 
-.frame{
+#seletorTipoCronometro{
+    display: grid;
+    place-items: center;
+}
+
+#seletorBotoes button{
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 20px;
+    transition: .3s;
+}
+
+#seletorBotoes button:hover{
+    background-color: #344e41;
+    color: #dad7cd;
+}
+
+#cronometroNormal{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+#cronometroPomodoro{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+#frame{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,9 +71,10 @@ h1{
     color: #344e41;
 }
 
-.cronometro{
+#cronometro{
     margin: 2vh;
     font-size: 45px;
+
 }
 
 button{
