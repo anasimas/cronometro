@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let cronometroSelecionado = '';
     let pomodoroSelecionado = '';
     let intervalo;
+    let divControlePomodoro;
+    let botaoConcentracao;
+    let botaoDescanso;
 
     // funções referentes ao seletor do tipo de cronometro
     botaoNormal.addEventListener("click", () => {
@@ -23,32 +26,61 @@ document.addEventListener('DOMContentLoaded', () => {
         elementoCronometro.style.display = "flex";
         cronometroSelecionado = 'pomodoro';
 
-        pomodoroSelecionado = 'descanso';
-      minAtual = 4;
-        segAtual = 5
-        seg.innerHTML = "05";
-        min.innerHTML = "04";
-        hora.innerHTML = "00";
-        
-        // minAtual = 25;
-        // segAtual = 0
-        // seg.innerHTML = "00";
-        // min.innerHTML = "25";
-        // hora.innerHTML = "00";
+        //Criação dinamica os controles do pomodoro
+        divControlePomodoro = document.createElement('div');
+        //Cria a div que vai conter os controles
+
+        divControlePomodoro.setAttribute('id', 'controlesPomodoro');
+
+        //Cria os botões e atribui eles à div anterior
+        botaoConcentracao = document.createElement('button');
+        botaoConcentracao.innerText = 'Concentração';
+        divControlePomodoro.appendChild(botaoConcentracao);
+
+        botaoDescanso = document.createElement('button')
+        botaoDescanso.innerText = 'Descanso';
+        divControlePomodoro.appendChild(botaoDescanso);
+
+        elementoCronometro.appendChild(divControlePomodoro);
+
+        //Adiciona os listeners para os botões criados
+        botaoDescanso.addEventListener("click", () => {
+            pomodoroSelecionado = 'descanso';
+            minAtual = 5;
+            segAtual = 0;
+            seg.innerHTML = "00";
+            min.innerHTML = "05";
+            hora.innerHTML = "00";
+        });
+
+        botaoConcentracao.addEventListener("click", () => {
+            pomodoroSelecionado = 'concentracao';
+            minAtual = 25;
+            segAtual = 0
+            seg.innerHTML = "00";
+            min.innerHTML = "25";
+            hora.innerHTML = "00";
+        });
     });
 
     botaoVoltar.addEventListener("click", () => {
         elementoSeletor.style.display = "grid";
         elementoCronometro.style.display = "none";
+        
         clearInterval(intervalo);
         botaoPlay.disabled = false;
         botaoPause.disabled = true;
         botaoReset.disabled = true;
+
+        if (cronometroSelecionado == 'pomodoro') {
+            divControlePomodoro.removeChild(botaoConcentracao, botaoDescanso);
+            elementoCronometro.removeChild(divControlePomodoro);
+            pomodoroSelecionado = '';
+        }
+        cronometroSelecionado = '';
     });
 
-    // funções relacionadas ao pomodoro
-
-    // funções referentes ao cronometro normal
+    // funções referentes aos cronômetros e controles
 
     let botaoPlay = document.getElementById('play');
     let botaoPause = document.getElementById('pause');
@@ -68,34 +100,51 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             if (pomodoroSelecionado == 'concentracao') {
                 intervalo = setInterval(pomodoroConcentracao, 1000);
-            } else {
+            } else if (pomodoroSelecionado == 'descanso') {
                 intervalo = setInterval(pomodoroDescanso, 1000);
+            } else {
+                alert('Selecione entre descanso e concentração!');
+                botaoPlay.disabled = false;
+                botaoPause.disabled = true;
+                botaoReset.disabled = true;
             }
         }
-        botaoPlay.disabled = true;
-        botaoPause.disabled = false;
-        botaoReset.disabled = false;
 
-        botaoPause.addEventListener("click", () => {
-            clearInterval(intervalo);
-            botaoPlay.disabled = false;
-            botaoPause.disabled = true;
+        if (intervalo) {
+            botaoPlay.disabled = true;
+            botaoPause.disabled = false;
             botaoReset.disabled = false;
-        });
-        botaoReset.addEventListener("click", () => {
-            clearInterval(intervalo);
-            botaoPlay.disabled = false;
-            botaoPause.disabled = true;
-            botaoReset.disabled = true;
 
-            seg.innerHTML = "00";
-            min.innerHTML = "00";
-            hora.innerHTML = "00";
+            botaoPause.addEventListener("click", () => {
+                clearInterval(intervalo);
+                botaoPlay.disabled = false;
+                botaoPause.disabled = true;
+                botaoReset.disabled = false;
+            });
 
-            segAtual = 0;
-            minAtual = 0;
-            horaAtual = 0;
-        });
+            botaoReset.addEventListener("click", () => {
+                clearInterval(intervalo);
+                botaoPlay.disabled = false;
+                botaoPause.disabled = true;
+                botaoReset.disabled = true;
+
+                seg.innerHTML = "00";
+                if (cronometroSelecionado == 'normal') {
+                    min.innerHTML = "00";
+                } else {
+                    if (pomodoroSelecionado == 'concentracao') {
+                        min.innerHTML = "25"
+                    } else {
+                        min.innerHTML = "05"
+                    }
+                }
+                hora.innerHTML = "00";
+
+                segAtual = 0;
+                minAtual = 0;
+                horaAtual = 0;
+            });
+        }
     })
 
     function cronometro() {
