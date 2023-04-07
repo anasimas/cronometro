@@ -38,16 +38,7 @@ body{
     color: #dad7cd;
 }
 
-#cronometroNormal{
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-}
-
-#cronometroPomodoro{
+#cronometro{
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -71,7 +62,7 @@ h1{
     color: #344e41;
 }
 
-#cronometro{
+#temporizador{
     margin: 2vh;
     font-size: 45px;
 
