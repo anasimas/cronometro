@@ -30,12 +30,6 @@ body{
     padding: 5px;
     border-radius: 5px;
     font-size: 20px;
-    transition: .3s;
-}
-
-#seletorBotoes button:hover{
-    background-color: #344e41;
-    color: #dad7cd;
 }
 
 #cronometro{
@@ -71,12 +65,23 @@ h1{
 #controlesPomodoro{
     display: flex;
     gap: 1vw;
+    order: -1;
+    margin-bottom: 3vh;
+}
+
+#seletorPomodoro, #seletorNormal, #botaoVoltar, #botaoDescanso, #botaoConcentracao{
+    background-color: #588157;
+    transition: .3s;
+}
+
+#seletorPomodoro:hover, #seletorNormal:hover, #botaoVoltar:hover, #botaoDescanso:hover, #botaoConcentracao:hover{
+    background-color: #344e41;
 }
 
 button{
     font-family: 'Nunito', sans-serif;
     font-size: 16px;
-    background-color: #588157;
+    background-color: transparent;
     border: none;
     border-radius: 3px;
     padding: 3px;
@@ -87,5 +92,11 @@ button:enabled{
     cursor: pointer;
 }
 
+i {
+    font-size: 26px;
+    color: #588157;
+    padding: 3px;
+    margin-top: 3vh;
+}
 
 

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let divControlePomodoro;
     let botaoConcentracao;
     let botaoDescanso;
-
+    
     // funções referentes ao seletor do tipo de cronometro
     botaoNormal.addEventListener("click", () => {
         elementoSeletor.style.display = "none";
@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
         seg.innerHTML = "00";
         min.innerHTML = "00";
         hora.innerHTML = "00";
+        minAtual = 0;
+        segAtual = 0;
+        horaAtual = 0;
     });
 
     botaoPomodoro.addEventListener("click", () => {
@@ -35,10 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
         //Cria os botões e atribui eles à div anterior
         botaoConcentracao = document.createElement('button');
         botaoConcentracao.innerText = 'Concentração';
+        botaoConcentracao.setAttribute('id', 'botaoConcentracao');
         divControlePomodoro.appendChild(botaoConcentracao);
 
         botaoDescanso = document.createElement('button')
         botaoDescanso.innerText = 'Descanso';
+        botaoDescanso.setAttribute('id', 'botaoDescanso');
         divControlePomodoro.appendChild(botaoDescanso);
 
         elementoCronometro.appendChild(divControlePomodoro);
@@ -56,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         botaoConcentracao.addEventListener("click", () => {
             pomodoroSelecionado = 'concentracao';
             minAtual = 25;
-            segAtual = 0
+            segAtual = 0;
             seg.innerHTML = "00";
             min.innerHTML = "25";
             hora.innerHTML = "00";
@@ -78,6 +83,13 @@ document.addEventListener('DOMContentLoaded', () => {
             pomodoroSelecionado = '';
         }
         cronometroSelecionado = '';
+        seg.innerHTML = "00";
+        min.innerHTML = "00";
+        hora.innerHTML = "00";
+        minAtual = 0;
+        segAtual = 0;
+        horaAtual = 0;
+
     });
 
     // funções referentes aos cronômetros e controles
