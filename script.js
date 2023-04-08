@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let divControlePomodoro;
     let botaoConcentracao;
     let botaoDescanso;
-    
+
     // funções referentes ao seletor do tipo de cronometro
     botaoNormal.addEventListener("click", () => {
         elementoSeletor.style.display = "none";
@@ -56,6 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
             seg.innerHTML = "00";
             min.innerHTML = "05";
             hora.innerHTML = "00";
+
+            // minAtual = 0;
+            // segAtual = 11;
+            // seg.innerHTML = "11";
+            // min.innerHTML = "00";
+            // hora.innerHTML = "00";
         });
 
         botaoConcentracao.addEventListener("click", () => {
@@ -65,6 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
             seg.innerHTML = "00";
             min.innerHTML = "25";
             hora.innerHTML = "00";
+
+            // minAtual = 0;
+            // segAtual = 11;
+            // seg.innerHTML = "11";
+            // min.innerHTML = "00";
+            // hora.innerHTML = "00";
         });
     });
 
@@ -196,19 +208,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function pomodoroConcentracao() {
         if (segAtual > 0) {
-            segAtual--;
-            seg.innerHTML = segAtual;
             if (segAtual <= 9) {
                 segAtual--;
                 seg.innerHTML = "0" + segAtual;
+            } else {
+                segAtual--;
+                seg.innerHTML = segAtual;
             }
         } else if (segAtual === 0) {
             segAtual = 59;
             seg.innerHTML = segAtual;
             if (minAtual <= 25) {
                 if (minAtual <= 9) {
-                    minAtual--;
-                    min.innerHTML = "0" + minAtual;
+                    if(minAtual == 0){
+                        alert('Realize um descanso de 5 minutos');
+                        minAtual = 0;
+                        min.innerHTML = "00";
+                        segAtual = 0;
+                        seg.innerHTML = "00";
+                        clearInterval(intervalo);
+                        botaoPlay.disabled = false;
+                        botaoPause.disabled = true;
+                        botaoReset.disabled = true;
+                    } else {
+                        minAtual--;
+                        min.innerHTML = "0" + minAtual;
+                    }
                 } else {
                     minAtual--;
                     min.innerHTML = minAtual;
@@ -219,22 +244,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function pomodoroDescanso() {
         if (segAtual > 0) {
-            console.log("1")
-            segAtual--;
-            seg.innerHTML = segAtual;
             if (segAtual <= 9) {
-                console.log("2")
                 segAtual--;
                 seg.innerHTML = "0" + segAtual;
+            } else {
+                segAtual--;
+                seg.innerHTML = segAtual;
             }
         } else if (segAtual === 0) {
-            console.log("3")
             segAtual = 59;
             seg.innerHTML = segAtual;
             if (minAtual <= 5) {
-                console.log("4")
-                minAtual--;
-                min.innerHTML = "0" + minAtual;
+                if(minAtual == 0){
+                    alert('Volte à concentração!');
+                    minAtual = 0;
+                    min.innerHTML = "00";
+                    segAtual = 0;
+                    seg.innerHTML = "00";
+                    clearInterval(intervalo);
+                    botaoPlay.disabled = false;
+                    botaoPause.disabled = true;
+                    botaoReset.disabled = true;
+                } else {
+                    minAtual--;
+                    min.innerHTML = "0" + minAtual;
+                }
             }
         }
     }
