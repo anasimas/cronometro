@@ -105,6 +105,11 @@ i {
     }
 
     button{
-        font-size: 10px;
+        font-size: 20px;
+        padding: 7px;
+    }
+
+    #controlePomodoro{
+        margin-bottom: 3vh;
     }
 }
